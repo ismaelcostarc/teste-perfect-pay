@@ -1,24 +1,10 @@
 # perfect-pay
 
-## Project setup
-```
-npm install
-```
+Desenvolva o site abaixo em VUE, com atenção na reatividade dos elementos da página. 
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+https://neal.fun/spend/
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Requisitos:
+- Utilizar Vuex;
+- Estilizar utilizando SASS;
+- Utilizar arquitetura BEM no CSS.
