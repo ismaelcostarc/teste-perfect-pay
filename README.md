@@ -12,9 +12,9 @@ Requisitos:
 -------------------------------------------------------------------------------------
 
 Para rodar o projeto:
-```
+```bash
 npm i
-npm run serve
+npm run serve ## ou npm run serve --fix
 ```
 
 Versão do node utilizada: v14.18.1 (obs: versões mais recentes do Node apresentaram problemas com o Sass)
