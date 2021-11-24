@@ -17,7 +17,7 @@ npm i
 npm run serve
 ```
 
-Versão do node utilizada: v14.18.1
+Versão do node utilizada: v14.18.1 (obs: versões mais recentes do Node apresentaram problemas com o Sass)
 
 Versão do npm: 6.14.15
 
