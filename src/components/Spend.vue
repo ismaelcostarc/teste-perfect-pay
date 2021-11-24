@@ -7,16 +7,19 @@
 
     <main>
       <div class="box">
-        <input class="box__balance" v-mask="'$###,###,###,###'" :value="100000000000 - total"/>
+        <input
+          class="box__balance"
+          v-mask="'$###,###,###,###'"
+          :value="100000000000 - $store.state.total"/>
       </div>
 
       <div class="products" >
-        <Product
-          v-for="product in products" :key="product.title"
+        <Card
+          v-for="product in products" :key="`${product.id}`"
           :imgSrc="product.imgSrc"
           :title="product.title"
           :price="product.price"
-          :quantity="product.quantity"
+          :quantity="$store.state.inventory[product.id - 1].quantity"
         />
       </div>
     </main>
@@ -26,7 +29,7 @@
       <div class="receipt__divider" />
       <div class="receipt__total">
         <span>TOTAL</span>
-        <input v-mask="'$###,###,###,###'" :value="total"/>
+        <input v-mask="'$###,###,###,###'" :value="$store.state.total"/>
       </div>
     </footer>
   </div>
@@ -137,33 +140,14 @@
   }
 </style>
 <script>
-import Product from './Product.vue';
+import Card from './Card.vue';
+import products from '../data/products';
 
 export default {
-  components: { Product },
+  components: { Card },
   data() {
     return {
-      total: 50000,
-      products: [
-        {
-          imgSrc: 'assets/img/big-mac.jpg',
-          title: 'Big Mac',
-          price: 2,
-          quantity: 0,
-        },
-        {
-          imgSrc: 'assets/img/flip-flops.jpg',
-          title: 'Flip Flops',
-          price: 2,
-          quantity: 0,
-        },
-        {
-          imgSrc: 'assets/img/coca-cola-pack.jpg',
-          title: 'Coca-cola Pack',
-          price: 2,
-          quantity: 0,
-        },
-      ],
+      products,
     };
   },
 };

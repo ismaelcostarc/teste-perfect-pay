@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img class="card__image" :src="require(`@/${imgSrc}`)"/>
+    <img class="card__image" :src="require(`@/assets/img/${imgSrc}`)"/>
     <h1 class="card__title">{{title}}</h1>
     <div class="card__price">${{price}}</div>
     <div class="card__btn-group">

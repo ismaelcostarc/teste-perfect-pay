@@ -5,7 +5,7 @@ const inventory = [];
 
 for (let i = 0; i < 45; i += 1) {
   inventory[i] = {
-    id: i,
+    id: i + 1,
     quantity: 0,
   };
 }
