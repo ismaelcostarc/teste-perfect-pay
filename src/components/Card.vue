@@ -2,22 +2,27 @@
   <div class="card">
     <img class="card__image" :src="require(`@/assets/img/${imgSrc}`)"/>
     <h1 class="card__title">{{title}}</h1>
-    <div class="card__price">${{price}}</div>
+    <input class="card__price" v-mask="'$###,###,###,###'" :value="price" />
     <div class="card__btn-group">
-      <button class="card__btn">Sell</button>
+      <button
+        class="card__btn"
+        :class="{'card__btn--danger': quantity !== 0}"
+        @click="quantity !== 0 && $store.commit('sell', id)">
+        Sell
+      </button>
       <input class="card__input" :value="quantity"/>
-      <button class="card__btn card__btn--primary">Buy</button>
+      <button class="card__btn card__btn--primary" @click="$store.commit('buy', id)">Buy</button>
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
 .card {
-    max-width: 100%;
-    background-color: #fff;
-    text-align: center;
-    font-size: 18px;
-    padding: 20px 15px;
-    width: 100%;
+  max-width: 100%;
+  background-color: #fff;
+  text-align: center;
+  font-size: 18px;
+  padding: 20px 15px;
+  width: 100%;
 
   .card__title {
     font-size: 22px;
@@ -26,7 +31,14 @@
 
   .card__price {
     font-size: 20px;
-    color: #24c486;
+    color: var(--main-color);
+    border-width: 0;
+    text-align: center;
+
+    &:focus {
+      outline: none;
+      caret-color: transparent;
+    }
   }
 
   .card__image {
@@ -51,7 +63,12 @@
     }
 
     .card__btn--primary {
-      background: linear-gradient(180deg,#2ecc71,#1abc9c);
+      background: var(--gradient-success);
+      color: #fff;
+    }
+
+    .card__btn--danger {
+      background: var(--gradient-danger);
       color: #fff;
     }
 
@@ -71,6 +88,10 @@
 <script>
 export default {
   props: {
+    id: {
+      type: Number,
+      required: true,
+    },
     imgSrc: {
       type: String,
       required: true,

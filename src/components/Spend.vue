@@ -16,6 +16,7 @@
       <div class="products" >
         <Card
           v-for="product in products" :key="`${product.id}`"
+          :id="product.id"
           :imgSrc="product.imgSrc"
           :title="product.title"
           :price="product.price"
@@ -24,14 +25,7 @@
       </div>
     </main>
 
-    <footer class="receipt">
-      <h1 class="receipt__title">Your Receipt</h1>
-      <div class="receipt__divider" />
-      <div class="receipt__total">
-        <span>TOTAL</span>
-        <input v-mask="'$###,###,###,###'" :value="$store.state.total"/>
-      </div>
-    </footer>
+    <Receipt/>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -55,12 +49,15 @@
   }
 
   .box {
-    background: linear-gradient(180deg,#2ecc71,#1abc9c);
+    background: var(--gradient-success);
     padding: 20px;
     margin: 10px 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    top: 0;
+    position: sticky;
+    z-index: 9999;
 
     .box__balance {
       font-size: 32px;
@@ -95,56 +92,14 @@
     }
   }
 
-  .receipt {
-    max-width: 100%;
-    font-size: 18px;
-    padding: 15px 15px 30px;
-    margin: 10px 0;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .receipt__title {
-      font-size: 28px;
-      padding: 15px 15px 25px;
-      font-weight: 700;
-    }
-
-    .receipt__divider {
-      height: 1px;
-      background-color: #000;
-      width: 300px;
-      margin-bottom: 15px;
-    }
-
-    .receipt__total {
-      display: flex;
-      width: 300px;
-      justify-content: space-between;
-      font-weight: bold;
-
-      & > :last-child {
-        color: #24c486;
-        border-width: 0;
-        text-align: end;
-        font-weight: inherit;
-        font-size: 1rem;
-
-        &:focus {
-          outline: none;
-          caret-color: transparent;
-        }
-      }
-    }
-  }
 </style>
 <script>
 import Card from './Card.vue';
+import Receipt from './Receipt.vue';
 import products from '../data/products';
 
 export default {
-  components: { Card },
+  components: { Card, Receipt },
   data() {
     return {
       products,

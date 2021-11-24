@@ -17,12 +17,12 @@ export default createStore({
   },
   mutations: {
     buy(state, id) {
-      state.inventory[id].quantity += 1;
-      state.total += products[id].price;
+      state.inventory[id - 1].quantity += 1;
+      state.total += products[id - 1].price;
     },
     sell(state, id) {
-      state.inventory[id].quantity += 1;
-      state.total -= products[id].price;
+      state.inventory[id - 1].quantity -= 1;
+      state.total -= products[id - 1].price;
     },
   },
   actions: {
