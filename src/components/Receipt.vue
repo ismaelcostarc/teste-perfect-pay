@@ -5,7 +5,7 @@
       <div class="receipt__line" v-if="item.quantity > 0">
         <div>{{ products[item.id - 1].title}}</div>
         <div>x{{ item.quantity }}</div>
-        <div>${{ products[item.id - 1].price * item.quantity }}</div>
+        <div>${{ finalPriceFormatted(item.id, item.quantity) }}</div>
       </div>
     </div>
     <div class="receipt__divider" />
@@ -88,6 +88,25 @@ export default {
     return {
       products,
     };
+  },
+  methods: {
+    finalPriceFormatted(id, quantity) {
+      const price = this.products[id - 1].price * quantity;
+
+      if (price.toString().length > 9) {
+        return `${price / 1000000000}b`;
+      }
+
+      if (price.toString().length > 6) {
+        return `${price / 1000000}m`;
+      }
+
+      if (price.toString().length > 3) {
+        return `${price / 1000}k`;
+      }
+
+      return price;
+    },
   },
 };
 </script>
